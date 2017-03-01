@@ -41,8 +41,6 @@ function ready(error, cairo) {
 
   svg.selectAll("path")
       .datum(topojson.feature(cairo, cairo.objects.monuments))
-        .enter()
-        .append('path')
         .attr("id", function (d) { return d.properties.id; })
         .attr('class', 'land')
         .attr('d', path);
