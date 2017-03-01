@@ -2,18 +2,15 @@
 <meta charset="utf-8">
 <style>
 
-.land {
-  fill: #e5e5e5;
-  stroke: #000;	  
-  stroke-width: 0.2;
-  stroke-opacity: 0.8;
+.feature {
+  fill: #ccc;
 }
 
-.states {
-  fill: none;
-  stroke: #fff;
+.outline {
+  fill: #ddd;
+  stroke: #000;
+  stroke-width: 1.5px;
 }
-
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -52,12 +49,12 @@ var svg = d3.select("body").append("svg")
 
   svg.append("path")
       .datum(monuments)
-      .attr("class", "land")
+      .attr("class", "feature")
       .attr("d", path);
 
   svg.append("path")
       .datum(monument)
-      .attr("class", "land")
+      .attr("class", "outline")
       .attr("d", path);
 });
 
