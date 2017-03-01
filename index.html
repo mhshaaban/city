@@ -34,7 +34,7 @@ queue()
 function ready(error, cairo) {
   if (error) throw error;
   svg.selectAll(".land")
-      .data(topojson.feature(cairo, cairo.objects.collection).features)
+      .data(topojson.feature(cairo, cairo.objects.monuments).features)
 		.enter()
 		.append('path')
 		.attr('class', 'land')
