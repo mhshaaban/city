@@ -21,11 +21,12 @@
 var width = 960,
     height = 500;
 
-var projection = d3.geo.mercator();
+var projection = d3.geo.mercator()
+    .center([62, 30])
+    .scale(1000)
+    .translate([width / 2, height / 2]);
 
-var path = d3.geo.path()
-    .projection(projection)
-    .pointRadius(1.5);
+var path = d3.geo.path().projection(projection);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -38,8 +39,9 @@ queue()
 function ready(error, cairo) {
   if (error) throw error;
 
-  svg.append("path")
+  svg.selectAll("path")
       .datum(topojson.feature(cairo, cairo.objects.collection))
+      .append("path")
       .attr("class", "land")
       .attr("d", path);
 
