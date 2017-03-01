@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-.land {
+.monuments {
   fill: #e5e5e5;
   stroke: #000;   
   stroke-width: 0.2;
@@ -39,9 +39,11 @@ function ready(error, cairo) {
       var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
       projection.scale(s).translate(t); 
 
-  svg.append("path")
+  svg.selectAll(".monuments")
       .datum(topojson.feature(cairo, cairo.objects.monuments))
-        .attr('d', path);
+        .enter().append("path")
+    .attr("class", function(d) { return "monuments " + d.id; })
+  .attr("d", path);
 }
 </script>
 </body>
