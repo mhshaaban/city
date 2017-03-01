@@ -39,7 +39,7 @@ function ready(error, cairo) {
   if (error) throw error;
 
   svg.append("path")
-      .datum(topojson.feature(cairo, cairo.objects.collection)
+      .datum(topojson.feature(cairo, cairo.objects.collection))
       .attr("class", "land")
       .attr("d", path);
 
