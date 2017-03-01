@@ -40,7 +40,7 @@ function ready(error, cairo) {
       var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
       projection.scale(s).translate(t); 
 
-  svg.selectAll("path")
+  .selectAll("path")
       .datum(topojson.feature(cairo, cairo.objects.monuments))
   .enter()
         .append("path")
