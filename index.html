@@ -26,8 +26,8 @@ var width = 960,
     height = 500;
 var projection = d3.geo.mercator()
     .center([30, 30])
-    .scale(25000)
-    .translate([width / 2, height / 2]);
+    .scale(5000)
+
 var path = d3.geo.path().projection(projection);
 var svg = d3.select("body").append("svg")
     .attr("width", width)
