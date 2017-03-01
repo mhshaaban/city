@@ -57,6 +57,10 @@ var svg = d3.select("body").append("svg")
       .attr("class", "land")
       .attr("d", path);
 
+  svg.append("path")
+      .datum(monument)
+      .attr("class", "land")
+      .attr("d", path);
 });
 
 
