@@ -38,7 +38,7 @@ var svg = d3.select("body").append("svg")
   if (error) throw error;
 
   var collection = topojson.feature(cairo, cairo.objects.collection),
-      monument = collection.features.filter(function(d) { return d.Name === "Madrasa Um Sultan Sha'ban"; })[0];
+      monument = collection.features.filter(function(d) { return d.id === 699; })[0];
 
   projection
       .scale(1)
