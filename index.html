@@ -39,6 +39,6 @@ d3.json("cairomonuments.json", function(error, cairo) {
         .enter().append("path")
     .attr("class", function(d) { return "monuments " + d.id; })
   .attr("d", path);
-}
+});
 </script>
 </body>
