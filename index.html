@@ -19,8 +19,8 @@
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
 <script>
-var width = 960,
-    height = 500;
+    var width = 800;
+    var height = 600;
 var projection = d3.geo.mercator()
     .center([30, 30])
         .scale(500)
@@ -43,7 +43,7 @@ function ready(error, cairo) {
       var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
       projection.scale(s).translate(t);	
 	
-  svg.selectAll(".land")
+  svg.selectAll("path")
       .data(topojson.feature(cairo, cairo.objects.monuments).features)
 		.enter()
 		.append('path')
