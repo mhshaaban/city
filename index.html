@@ -37,7 +37,7 @@ var svg = d3.select("body").append("svg")
 	d3.json("cairomonuments.json", function(error, cairo) {
   if (error) throw error;
 
-  var monuments = topojson.feature(cairo, cairo.objects.collection),
+  var monuments = topojson.feature(cairo, cairo.objects.monuments),
       monument = monuments.features.filter(function(d) { return d.id === 699; })[0];
 
   projection
