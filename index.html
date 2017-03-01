@@ -36,6 +36,7 @@ d3.json("cairomonuments.json", function(error, cairo) {
 
   svg.append("path")
       .datum(topojson.feature(cairo, cairo.objects.monuments))
+  .append("path")
     .attr("class", function(d) { return "monuments " + d.id; })
   .attr("d", path);
 });
