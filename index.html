@@ -40,7 +40,7 @@ function ready(error, cairo) {
       projection.scale(s).translate(t); 
 
   svg.selectAll("path")
-      .datum(topojson.feature(cairo, cairo.objects.monuments)
+      .datum(topojson.feature(cairo, cairo.objects.monuments))
         .enter()
         .append('path')
         .attr("id", function (d) { return d.properties.id; })
