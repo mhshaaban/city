@@ -37,8 +37,8 @@ var svg = d3.select("body").append("svg")
 	d3.json("cairomonuments.json", function(error, cairo) {
   if (error) throw error;
 
-  var collection = topojson.feature(cairo, cairo.objects.collection),
-      monument = collection.features.filter(function(d) { return d.id === 699; })[0];
+  var monuments = topojson.feature(cairo, cairo.objects.collection),
+      monument = monuments.features.filter(function(d) { return d.id === 699; })[0];
 
   projection
       .scale(1)
@@ -53,7 +53,7 @@ var svg = d3.select("body").append("svg")
       .translate(t);
 
   svg.append("path")
-      .datum(collection)
+      .datum(monuments)
       .attr("class", "land")
       .attr("d", path);
 
