@@ -39,11 +39,12 @@ queue()
 function ready(error, cairo) {
   if (error) throw error;
 
-  svg.selectAll("path")
-      .datum(topojson.feature(cairo, cairo.objects.collection))
-      .append("path")
-      .attr("class", "land")
-      .attr("d", path);
+  svg.selectAll(".land")
+      .data(topojson.feature(cairo, cairo.objects.collection).features)
+		.enter()
+		.append('path')
+		.attr('class', 'land')
+		.attr('d', path);
 
 }
 
