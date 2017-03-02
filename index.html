@@ -1,52 +1,57 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-.monuments {
+.land {
   fill: #e5e5e5;
   stroke: #000;   
   stroke-width: 0.2;
   stroke-opacity: 0.8;
 }
-.subunit { fill: #ddc; }
-
+.states {
+  fill: none;
+  stroke: #fff;
+}
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
 <script>
+
     var width = 800;
-    var height = 600;
+    var height = 500;
 var projection = d3.geo.mercator()
-.center([30, 30])
-      .scale(1000)
-      .translate([width / 2, height / 2]);
+    .scale(1)
+    .translate([width / 2, height / 2]);
+	
 var path = d3.geo.path().projection(projection);
+
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
-
-  queue(2)
-      .defer(d3.json, "cairomonuments.json")
-.await(ready);
+	
+queue()
+    .defer(d3.json, "cairo.json")
+    .await(ready);
+	
 function ready(error, cairo) {
-      if (error) return console.error(error);
-      // Refine projection
-      var b, s, t;
-      projection.scale(1).translate([0, 0]);
-      var b = path.bounds(cairo);
-      var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
-      var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-      projection.scale(s).translate(t); 
-
-  .selectAll("path")
-      .datum(topojson.feature(cairo, cairo.objects.monuments))
-  .enter()
-        .append("path")
-  .attr("id", function (d) { return "monuments " + d.id; })
-    .attr("d", path)
-    .attr("class", function(d) { return "monuments " + d.id; });
+  if (error) throw error;
+	// center
+	var x = (cairo.bbox[0] + cairo.bbox[2]) / 2;
+	var y = (cairo.bbox[1] + cairo.bbox[3]) / 2; 
+	projection.rotate([-x,-y,90]);
+	// get scale
+	var b = [ projection([cairo.bbox[0],cairo.bbox[3]]),projection([cairo.bbox[2],cairo.bbox[1]]) ];
+    var s = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
+	projection.scale(s);
+	// append data  
+	svg.selectAll("path")
+      .data(topojson.feature(cairo, cairo.objects.monuments).features)
+        .enter()
+        .append('path')
+        .attr('class', 'land')
+        .attr('d', path);
 }
 </script>
 </body>
