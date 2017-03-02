@@ -40,7 +40,7 @@ function ready(error, cairo) {
 	// center
 	var x = (cairo.bbox[0] + cairo.bbox[2]) / 2;
 	var y = (cairo.bbox[1] + cairo.bbox[3]) / 2; 
-	projection.rotate([-x,-y,45]);
+	projection.rotate([-x,-y,90]);
 	// get scale
 	var b = [ projection([cairo.bbox[0],cairo.bbox[3]]),projection([cairo.bbox[2],cairo.bbox[1]]) ];
     var s = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
