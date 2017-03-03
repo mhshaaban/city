@@ -53,5 +53,18 @@ function ready(error, cairo) {
         .attr('class', 'land')
         .attr('d', path);
 }
+	//Append title to the top
+    svg.append("text")
+    	.attr("class", "title")
+        .attr("x", width/2)
+        .attr("y", -90)
+        .style("text-anchor", "middle")
+        .text("Historic Cairo");
+    svg.append("text")
+    	.attr("class", "subtitle")
+        .attr("x", width/2)
+        .attr("y", -60)
+        .style("text-anchor", "middle")
+        .text("القاهرة");
 </script>
 </body>
